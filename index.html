@@ -12,17 +12,28 @@
           "footer": "http://localhost:3010/app.js",
           "header": "http://localhost:3020/app.js",
           "buy-tools": "http://localhost:3030/static/js/bundle.js",
+          "product-image": "http://localhost:3050/src/index.js",
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js"
         }
       }
     </script>
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/single-spa-html"></script>
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.8.0/dist/import-map-overrides.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/amd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-exports.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-register.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/use-default.min.js"></script>
+    <style>
+    .top {
+      display: grid;
+      grid-template-columns: 70% 30%;
+    }
+    .content {
+      padding: 1em;
+    }
+    </style>
   </head>
   <body>
     <script>
@@ -42,6 +53,11 @@
           () => System.import('buy-tools'),
           location => location.pathname.startsWith('/')
         );
+        singleSpa.registerApplication(
+          'product-image',
+          () => System.import('product-image'),
+          location => location.pathname.startsWith('/')
+        );
         singleSpa.start();
       })
     </script>
@@ -49,8 +65,13 @@
     <div id="header">
     </div>
 
-    <div id="content">
-      <div id="buy-tools">
+    <div class="content">
+      <div class="top">
+        <div id="product-image">
+          Product!
+        </div>
+        <div id="buy-tools">
+        </div>        
       </div>
     </div>
 
