@@ -11,6 +11,7 @@
         "imports": {
           "footer": "http://localhost:3010/app.js",
           "header": "http://localhost:3020/app.js",
+          "buy-tools": "http://localhost:3030/static/js/bundle.js",
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js"
         }
       }
@@ -36,6 +37,11 @@
           () => System.import('footer'),
           location => location.pathname.startsWith('/')
         );
+        singleSpa.registerApplication(
+          'buy-tools',
+          () => System.import('buy-tools'),
+          location => location.pathname.startsWith('/')
+        );
         singleSpa.start();
       })
     </script>
@@ -44,7 +50,8 @@
     </div>
 
     <div id="content">
-      Content
+      <div id="buy-tools">
+      </div>
     </div>
 
     <div id="footer">
