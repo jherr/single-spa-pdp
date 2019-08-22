@@ -4,7 +4,6 @@ import rootComponent from './App.js';
 import singleSpaReact from 'single-spa-react';
 
 const reactLifecycles = singleSpaReact({
-  domElementGetter: () => document.getElementById('buy-tools'),
   React,
   ReactDOM,
   rootComponent,

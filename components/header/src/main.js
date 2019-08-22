@@ -7,7 +7,6 @@ Vue.config.productionTip = false;
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    el: '#footer',
     render: (h) => h(App),
   },
 });

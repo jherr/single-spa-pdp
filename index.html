@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Your application</title>
+    <title>Adopt a dog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="importmap-type" content="systemjs-importmap">
+    <script src="/store.js"></script>
     <script type="systemjs-importmap">
       {
         "imports": {
-          "footer": "http://localhost:3010/app.js",
-          "header": "http://localhost:3020/app.js",
+          "header": "http://localhost:3010/app.js",
+          "footer": "http://localhost:3020/app.js",
           "buy-tools": "http://localhost:3030/static/js/bundle.js",
-          "product-image": "http://localhost:3050/src/index.js",
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js"
         }
       }
@@ -25,10 +25,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-exports.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-register.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/use-default.min.js"></script>
+    <script src="http://localhost:8000/components/product-image.js"></script>
     <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     .top {
       display: grid;
       grid-template-columns: 70% 30%;
+      column-gap: 1em;
     }
     .content {
       padding: 1em;
@@ -53,29 +61,23 @@
           () => System.import('buy-tools'),
           location => location.pathname.startsWith('/')
         );
-        singleSpa.registerApplication(
-          'product-image',
-          () => System.import('product-image'),
-          location => location.pathname.startsWith('/')
-        );
         singleSpa.start();
       })
     </script>
 
-    <div id="header">
+    <div id="single-spa-application:header">
     </div>
 
     <div class="content">
       <div class="top">
-        <div id="product-image">
-          Product!
+        <div id="single-spa-application:product-image">
         </div>
-        <div id="buy-tools">
+        <div id="single-spa-application:buy-tools">
         </div>        
       </div>
     </div>
 
-    <div id="footer">
+    <div id="single-spa-application:footer">
     </div>
 
     <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
