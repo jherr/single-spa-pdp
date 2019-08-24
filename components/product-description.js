@@ -1,13 +1,12 @@
 System.import('single-spa').then(function (singleSpa) {
   const template = `
   <style>
-  .product-image {
+  .product-description {
     background: lightgrey;
     padding: 1em;
   }
   </style>
-  <div class="product-image">
-    <img style="height: 300px;"></img>
+  <div class="product-description">
   </div>
   `;
 
@@ -19,13 +18,13 @@ System.import('single-spa').then(function (singleSpa) {
   webComponentApp.mount = function(opts, props) {
     return webComponentApp.originalMount(opts, props)
       .then(() => {
-        const el = document.querySelector('.product-image img');
-        el.src = window.pdp.product.image;
+        const el = document.querySelector('.product-description');
+        el.innerText = window.pdp.product.name;
         window.addEventListener('productChange', () => {
-          el.src = window.pdp.product.image;
+          el.innerText = window.pdp.product.name;
         });
       });
   }.bind(webComponentApp);
 
-  singleSpa.registerApplication('product-image', webComponentApp, () => true);
+  singleSpa.registerApplication('product-description', webComponentApp, () => true);
 });
